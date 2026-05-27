@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>Registro Evento CETLOG</title>
+
+  <!-- GOOGLE FONTS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    :root{
+      --azul:#1C2556;
+      --naranja:#F5820B;
+      --gris:#f4f6fb;
+      --texto:#2d2d2d;
+    }
+
+    body{
+      font-family:'Poppins',sans-serif;
+      background:var(--gris);
+      color:var(--texto);
+    }
+
+    /* =========================
+       HERO
+    ========================== */
+
+    .hero{
+      width:100%;
+      height:370px;
+
+      position:relative;
+      overflow:hidden;
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .hero-bg{
+      position:absolute;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      top:0;
+      left:0;
+    }
+
+    .overlay{
+      position:absolute;
+      inset:0;
+
+      background:
+      linear-gradient(
+        rgba(16,23,58,.80),
+        rgba(16,23,58,.80)
+      );
+
+      z-index:1;
+    }
+
+    .hero-content{
+      position:relative;
+      z-index:2;
+
+      text-align:center;
+      color:white;
+
+      width:100%;
+      max-width:950px;
+
+      padding:20px;
+    }
+
+    .logo{
+      width:280px;
+      max-width:90%;
+
+      background:white;
+
+      padding:18px 28px;
+
+      border-radius:22px;
+
+      box-shadow:
+      0 12px 35px rgba(0,0,0,.22);
+
+      margin-bottom:28px;
+    }
+
+    .hero-content h1{
+      font-size:46px;
+      font-weight:700;
+
+      margin-bottom:15px;
+    }
+
+    .hero-content p{
+      font-size:18px;
+      line-height:1.8;
+      font-weight:300;
+
+      max-width:760px;
+      margin:auto;
+    }
+
+    /* =========================
+       CONTENEDOR
+    ========================== */
+
+    .container{
+      width:100%;
+      max-width:920px;
+
+      margin:auto;
+
+      margin-top:-70px;
+
+      position:relative;
+      z-index:10;
+
+      padding:20px;
+    }
+
+    .card{
+      background:white;
+
+      border-radius:28px;
+
+      padding:45px;
+
+      box-shadow:
+      0 18px 45px rgba(0,0,0,.10);
+    }
+
+    .title{
+      text-align:center;
+      margin-bottom:35px;
+    }
+
+    .title h2{
+      color:var(--azul);
+      font-size:34px;
+      margin-bottom:10px;
+    }
+
+    .title p{
+      color:#666;
+      font-size:15px;
+    }
+
+    /* =========================
+       GRID
+    ========================== */
+
+    .grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:22px;
+    }
+
+    .field{
+      display:flex;
+      flex-direction:column;
+    }
+
+    .full{
+      grid-column:1 / -1;
+    }
+
+    label{
+      margin-bottom:8px;
+
+      font-size:14px;
+      font-weight:600;
+
+      color:var(--azul);
+    }
+
+    input,
+    select{
+      height:56px;
+
+      border:1.5px solid #d9deea;
+
+      border-radius:15px;
+
+      padding:0 16px;
+
+      font-size:15px;
+
+      outline:none;
+
+      transition:.25s;
+
+      background:white;
+    }
+
+    input:focus,
+    select:focus{
+      border-color:var(--naranja);
+
+      box-shadow:
+      0 0 0 4px rgba(245,130,11,.15);
+    }
+
+    /* =========================
+       CONSENTIMIENTO
+    ========================== */
+
+    .consent-box{
+      margin-top:30px;
+
+      background:#f8f9fc;
+
+      border:1px solid #e3e8f2;
+
+      border-radius:18px;
+
+      padding:22px;
+    }
+
+    .check-line{
+      display:flex;
+      align-items:flex-start;
+      gap:14px;
+    }
+
+    .check-line input{
+      width:20px;
+      height:20px;
+      margin-top:3px;
+
+      accent-color:var(--naranja);
+    }
+
+    .check-line p{
+      line-height:1.8;
+      font-size:14px;
+      color:#444;
+    }
+
+    /* =========================
+       BOTÓN
+    ========================== */
+
+    .btn{
+      width:100%;
+      height:60px;
+
+      border:none;
+
+      border-radius:18px;
+
+      background:var(--naranja);
+
+      color:white;
+
+      font-size:17px;
+      font-weight:600;
+
+      cursor:pointer;
+
+      margin-top:35px;
+
+      transition:.25s;
+    }
+
+    .btn:hover{
+      background:#dd7106;
+      transform:translateY(-2px);
+    }
+
+    /* =========================
+       MENSAJE
+    ========================== */
+
+    .message{
+      display:none;
+
+      margin-top:20px;
+
+      text-align:center;
+
+      background:#e9f8ee;
+
+      color:#18753a;
+
+      padding:16px;
+
+      border-radius:14px;
+
+      font-size:14px;
+      font-weight:500;
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================== */
+
+    @media(max-width:768px){
+
+      .hero{
+        height:450px;
+      }
+
+      .hero-content h1{
+        font-size:32px;
+      }
+
+      .hero-content p{
+        font-size:15px;
+      }
+
+      .logo{
+        width:220px;
+      }
+
+      .container{
+        margin-top:-40px;
+      }
+
+      .card{
+        padding:30px 22px;
+      }
+
+      .grid{
+        grid-template-columns:1fr;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <!-- =========================
+       HERO
+  ========================== -->
+
+  <section class="hero">
+
+    <!-- IMAGEN DE FONDO -->
+    <img
+      src="Fondo.png"
+      alt="Fondo CETLOG"
+      class="hero-bg"
+    >
+
+    <!-- OVERLAY -->
+    <div class="overlay"></div>
+
+    <!-- CONTENIDO -->
+    <div class="hero-content">
+
+      <!-- LOGO -->
+      <img
+        src="logo.jpg"
+        alt="Logo CETLOG"
+        class="logo"
+      >
+
+      <h1>
+        Registro de Participantes
+      </h1>
+
+      <p>
+        Completa el siguiente formulario para participar
+        en el evento organizado por CETLOG y recibe
+        información sobre nuestros programas especializados
+        en logística y distribución.
+      </p>
+
+    </div>
+
+  </section>
+
+  <!-- =========================
+       FORMULARIO
+  ========================== -->
+
+  <div class="container">
+
+    <div class="card">
+
+      <div class="title">
+
+        <h2>
+          Formulario de Inscripción
+        </h2>
+
+        <p>
+          Todos los campos son obligatorios
+        </p>
+
+      </div>
+
+      <form id="registroForm">
+
+        <div class="grid">
+
+          <!-- NOMBRE -->
+
+          <div class="field full">
+
+            <label>
+              Nombres completos
+            </label>
+
+            <input
+              type="text"
+              name="nombre"
+              required
+              placeholder="Ingrese sus nombres y apellidos"
+            >
+
+          </div>
+
+          <!-- DNI -->
+
+          <div class="field">
+
+            <label>
+              DNI
+            </label>
+
+            <input
+              type="text"
+              name="dni"
+              maxlength="8"
+              required
+              placeholder="Ingrese su DNI"
+            >
+
+          </div>
+
+          <!-- ESTADO -->
+
+          <div class="field">
+
+            <label>
+              Condición académica
+            </label>
+
+            <select
+              name="condicion"
+              required
+            >
+
+              <option value="">
+                Seleccione
+              </option>
+
+              <option>
+                Estudiante
+              </option>
+
+              <option>
+                Egresado
+              </option>
+
+            </select>
+
+          </div>
+
+          <!-- UNIVERSIDAD -->
+
+          <div class="field full">
+
+            <label>
+              Universidad / Instituto
+            </label>
+
+            <input
+              type="text"
+              name="universidad"
+              required
+              placeholder="Ingrese su universidad o instituto"
+            >
+
+          </div>
+
+          <!-- CICLO -->
+
+          <div class="field">
+
+            <label>
+              Ciclo
+            </label>
+
+            <select
+              name="ciclo"
+              required
+            >
+
+              <option value="">
+                Seleccione
+              </option>
+
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+              <option>6</option>
+              <option>7</option>
+              <option>8</option>
+              <option>9</option>
+              <option>10</option>
+              <option>Otro</option>
+
+            </select>
+
+          </div>
+
+          <!-- CARRERA -->
+
+          <div class="field">
+
+            <label>
+              Carrera
+            </label>
+
+            <select
+              name="carrera"
+              required
+            >
+
+              <option value="">
+                Seleccione
+              </option>
+
+              <option>
+                Ingeniería Industrial
+              </option>
+
+              <option>
+                Ingeniería Empresarial
+              </option>
+
+              <option>
+                Ingeniería de Sistemas
+              </option>
+
+              <option>
+                Ingeniería Civil
+              </option>
+
+              <option>
+                Ingeniería Mecánica
+              </option>
+
+              <option>
+                Administración
+              </option>
+
+              <option>
+                Negocios Internacionales
+              </option>
+
+              <option>
+                Logística
+              </option>
+
+              <option>
+                Comercio Exterior
+              </option>
+
+              <option>
+                Economía
+              </option>
+
+              <option>
+                Otro
+              </option>
+
+            </select>
+
+          </div>
+
+          <!-- CORREO -->
+
+          <div class="field full">
+
+            <label>
+              Correo electrónico
+            </label>
+
+            <input
+              type="email"
+              name="correo"
+              required
+              placeholder="ejemplo@correo.com"
+            >
+
+          </div>
+
+        </div>
+
+        <!-- CONSENTIMIENTO -->
+
+        <div class="consent-box">
+
+          <label
+            style="
+            display:block;
+            margin-bottom:14px;
+          ">
+
+            Consentimiento de información
+
+          </label>
+
+          <div class="check-line">
+
+            <input
+              type="checkbox"
+              name="consentimiento"
+              required
+            >
+
+            <p>
+
+              Me gustaría recibir información sobre los programas
+              de Gestión de Almacenes y Centros de Distribución (GAC),
+              Gestión de Transporte y Distribución (GTD) y
+              Transporte de Carga Internacional (TCI).
+
+            </p>
+
+          </div>
+
+        </div>
+
+        <!-- BOTÓN -->
+
+        <button
+          type="submit"
+          class="btn"
+        >
+
+          Registrarme
+
+        </button>
+
+        <!-- MENSAJE -->
+
+        <div
+          class="message"
+          id="message"
+        >
+
+          Registro enviado correctamente.
+
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+  <!-- =========================
+       SCRIPT
+  ========================== -->
+
+  <script>
+
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwfE69qDmXClgcUiCNn-2AxCsveYfNWXE7I-yUj2Y6tdpzXpOUdy8Eh1Fp9sjrcxkalFw/exec";
+
+    const form = document.getElementById("registroForm");
+
+    form.addEventListener("submit", async (e) => {
+
+      e.preventDefault();
+
+      const formData = new FormData(form);
+
+      const data = Object.fromEntries(formData.entries());
+
+      try {
+
+        await fetch(SCRIPT_URL, {
+
+          method: "POST",
+
+          body: JSON.stringify(data)
+
+        });
+
+        document.getElementById("message").style.display = "block";
+
+        form.reset();
+
+      } catch(error) {
+
+        alert("Ocurrió un error al enviar.");
+
+        console.error(error);
+
+      }
+
+    });
+
+  </script>
+
+</body>
+</html>
