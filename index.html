@@ -306,6 +306,71 @@
       font-size:14px;
       font-weight:500;
     }
+    /* =========================
+   CONFIRMACIÓN
+========================== */
+
+.success-container{
+
+  display:none;
+
+  text-align:center;
+
+  padding:40px 20px;
+
+  animation:fadeIn .5s ease;
+}
+
+.success-image{
+
+  width:100%;
+  max-width:420px;
+
+  border-radius:22px;
+
+  margin-bottom:30px;
+
+  box-shadow:
+  0 15px 35px rgba(0,0,0,.12);
+}
+
+.success-container h2{
+
+  color:#1C2556;
+
+  font-size:34px;
+
+  margin-bottom:16px;
+}
+
+.success-container p{
+
+  max-width:550px;
+
+  margin:auto;
+
+  line-height:1.9;
+
+  color:#555;
+
+  font-size:16px;
+}
+
+/* ANIMACIÓN */
+
+@keyframes fadeIn{
+
+  from{
+    opacity:0;
+    transform:translateY(20px);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+
+}
 
     /* =========================
        RESPONSIVE
@@ -441,7 +506,24 @@
             >
 
           </div>
+<!-- CELULAR -->
 
+<div class="field">
+
+  <label>
+    Número de celular
+  </label>
+
+  <input
+    type="tel"
+    name="celular"
+    required
+    maxlength="9"
+    pattern="[0-9]{9}"
+    placeholder="Ingrese su celular"
+  >
+
+</div>
           <!-- ESTADO -->
 
           <div class="field">
@@ -581,6 +663,7 @@
             </select>
 
           </div>
+          
           <!-- SITUACIÓN LABORAL -->
 
 <div class="field full">
@@ -687,19 +770,35 @@
 
         </button>
 
-        <!-- MENSAJE -->
 
-        <div
-          class="message"
-          id="message"
-        >
-
-          Registro enviado correctamente.
-
-        </div>
+       
 
       </form>
+<!-- CONFIRMACIÓN -->
 
+<div
+  class="success-container"
+  id="successContainer"
+>
+
+  <img
+    src="AQUI_TU_IMAGEN_CONFIRMACION"
+    alt="Confirmación"
+    class="success-image"
+  >
+
+  <h2>
+    ¡Registro completado!
+  </h2>
+
+  <p>
+
+    Gracias por registrarte en el evento de CCAT.
+    Hemos enviado la información a tu correo electrónico.
+
+  </p>
+
+</div>
     </div>
 
   </div>
@@ -731,6 +830,11 @@
           body: JSON.stringify(data)
 
         });
+        form.style.display = "none";
+
+document
+  .getElementById("successContainer")
+  .style.display = "block";
 
         document.getElementById("message").style.display = "block";
 
