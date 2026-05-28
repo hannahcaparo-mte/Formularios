@@ -777,18 +777,20 @@
        
 
       </form>
-<!-- CONFIRMACIÓN -->
 
+
+    </div>
+<!-- CONFIRMACIÓN -->
 <div
   class="success-container"
   id="successContainer"
 >
 
   <img
-    src="https://drive.google.com/uc?export=view&id=1BLq7uovKod09puS2Kb3JSzESTtj50QDt"
-    alt="Confirmación"
-    class="success-image"
-  >
+  src="https://raw.githubusercontent.com/hannahcaparo-mte/ccat-form/main/popup.png"
+  alt="Confirmación"
+  class="success-image"
+/>
 
   <h2>
     ¡Registro completado!
@@ -796,64 +798,61 @@
 
   <p>
 
-    Gracias por registrarte en el evento de CCAT.
-    Hemos enviado la información a tu correo electrónico.
+    Gracias por registrarte. Hemos enviado la información a tu correo electrónico.
 
   </p>
 
 </div>
-    </div>
 
   </div>
 
-  <!-- =========================
-       SCRIPT
-  ========================== -->
+ <script>
 
-  <script>
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwfE69qDmXClgcUiCNn-2AxCsveYfNWXE7I-yUj2Y6tdpzXpOUdy8Eh1Fp9sjrcxkalFw/exec";
 
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwfE69qDmXClgcUiCNn-2AxCsveYfNWXE7I-yUj2Y6tdpzXpOUdy8Eh1Fp9sjrcxkalFw/exec";
+const form = document.getElementById("registroForm");
 
-    const form = document.getElementById("registroForm");
+form.addEventListener("submit", async (e) => {
 
-    form.addEventListener("submit", async (e) => {
+  e.preventDefault();
 
-      e.preventDefault();
+  const formData = new FormData(form);
 
-      const formData = new FormData(form);
+  const data = Object.fromEntries(formData.entries());
 
-      const data = Object.fromEntries(formData.entries());
+  try {
 
-      try {
+    await fetch(SCRIPT_URL, {
 
-        await fetch(SCRIPT_URL, {
+      method: "POST",
 
-          method: "POST",
-
-          body: JSON.stringify(data)
-
-        });
-        form.style.display = "none";
-
-document
-  .getElementById("successContainer")
-  .style.display = "block";
-
-        document.getElementById("message").style.display = "block";
-
-        form.reset();
-
-      } catch(error) {
-
-        alert("Ocurrió un error al enviar.");
-
-        console.error(error);
-
-      }
+      body: JSON.stringify(data)
 
     });
 
-  </script>
+    // OCULTAR TODO EL FORMULARIO
+
+    document
+      .querySelector(".card")
+      .style.display = "none";
+
+    // MOSTRAR CONFIRMACIÓN
+
+    document
+      .getElementById("successContainer")
+      .style.display = "block";
+
+  } catch(error) {
+
+    alert("Ocurrió un error al enviar.");
+
+    console.error(error);
+
+  }
+
+});
+
+</script>
 
 </body>
 </html>
